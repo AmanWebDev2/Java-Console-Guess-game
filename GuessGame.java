@@ -105,49 +105,38 @@ class Umpire {
             players[i].resetScore();
         }
     }
+    void commonStart() {
+        getNumFromGuesser();
+        getNumFromPlayers();
+        compare();
+        getResult();
+    }
 
     void start() {
-        if(gameNumType < 0) {
-
-            getDetails();
-            getNumFromGuesser();
-            getNumFromPlayers();
-            compare();
-            getResult();
-        }else {
             switch (gameNumType) {
                 case 1:
-                    getNumFromGuesser();
-                    getNumFromPlayers();
-                    compare();
-                    getResult();
+                commonStart();
                     break;
                 case 0:
                 // exit
                 System.exit(1);
                 case 2:
                     resetPlayersScore();
-                    getNumFromGuesser();
-                    getNumFromPlayers();
-                    compare();
-                    getResult();
+                    commonStart();
                 break;
-    
+                case -1:
+                getDetails();
+                commonStart();    
                 default:
                     break;
             }
-        }
 
     }
 }
 
-class LaunchGame {
-
-
- 
+class LaunchGame { 
 
     void start() {
-        
         
         Umpire umpire = new Umpire();
         umpire.start();
